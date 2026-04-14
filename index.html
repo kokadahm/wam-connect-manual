@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAM Connect｜FC用 ご利用の手引き</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --g:#1b6e40;--g2:#e8f5ee;--g3:#25a05c;
+  --gold:#c49a3c;--gold2:#fdf6e4;
+  --red:#d13030;--red2:#fff0f0;
+  --dark:#1c1c1c;--mid:#666;--soft:#f4f7f5;
+  --white:#fff;--border:#d4e8db;
+  --radius:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--soft);color:var(--dark);min-height:100vh;font-size:16px;}
+
+/* ───── HEADER ───── */
+.header{
+  background:linear-gradient(135deg,#0d4226 0%,#1b6e40 60%,#23915a 100%);
+  padding:40px 24px 36px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.header::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:32px;
+  background:var(--soft);
+  clip-path:ellipse(55% 100% at 50% 100%);
+}
+.logo-pill{
+  display:inline-flex;align-items:center;
+  background:white;border-radius:14px;
+  padding:10px 24px;margin-bottom:22px;
+  box-shadow:0 6px 24px rgba(0,0,0,0.18);
+}
+.logo-pill .w{font-family:'Outfit',sans-serif;font-weight:900;font-size:28px;color:var(--g);letter-spacing:-1px;}
+.logo-pill .c{font-family:'Outfit',sans-serif;font-weight:700;font-size:28px;color:var(--gold);}
+.header h1{font-size:clamp(20px,5vw,34px);font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
+.header-sub{color:rgba(255,255,255,0.72);font-size:14px;margin-bottom:18px;}
+.header-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.13);border:1.5px solid rgba(255,255,255,0.28);
+  border-radius:50px;padding:9px 20px;color:#fff;font-size:13px;font-weight:700;
+}
+
+/* ───── CONTACT BAR ───── */
+.mail-bar{
+  max-width:800px;margin:28px auto 0;
+  background:var(--g);color:#fff;
+  border-radius:16px;padding:18px 28px;
+  display:flex;align-items:center;gap:16px;
+  box-shadow:0 6px 28px rgba(27,110,64,.22);
+}
+.mail-bar .mi{font-size:32px;flex-shrink:0;}
+.mail-bar .ml{font-size:11px;font-weight:700;opacity:.7;letter-spacing:.06em;margin-bottom:4px;}
+.mail-bar .ma{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;letter-spacing:.02em;}
+.mail-bar .tel{font-size:13px;opacity:.8;margin-top:4px;}
+@media(max-width:600px){.mail-bar{flex-direction:column;text-align:center;margin:20px 16px 0;}}
+
+/* ───── TAB NAV ───── */
+.tab-wrap{
+  max-width:900px;margin:32px auto 0;
+  padding:0 16px;
+}
+.tab-nav{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-bottom:24px;
+}
+.tab-btn{
+  flex-shrink:0;
+  background:white;border:2px solid var(--border);
+  border-radius:50px;padding:10px 18px;
+  font-size:13px;font-weight:700;color:var(--mid);
+  cursor:pointer;transition:all .2s;
+  font-family:'Noto Sans JP',sans-serif;
+  white-space:nowrap;
+}
+.tab-btn:hover{border-color:var(--g);color:var(--g);}
+.tab-btn.active{background:var(--g);border-color:var(--g);color:#fff;box-shadow:0 4px 14px rgba(27,110,64,.28);}
+
+/* ───── PAGES ───── */
+.page{display:none;animation:fadein .3s ease;}
+.page.show{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ───── RULE HERO ───── */
+.rule-hero{
+  background:var(--g);border-radius:var(--radius);
+  padding:28px 30px;margin-bottom:24px;
+  display:flex;align-items:center;gap:20px;
+  box-shadow:0 6px 24px rgba(27,110,64,.2);
+}
+.rule-hero .rn{
+  font-family:'Outfit',sans-serif;font-weight:900;font-size:52px;
+  color:rgba(255,255,255,.18);line-height:1;flex-shrink:0;
+}
+.rule-hero .rt{font-size:clamp(17px,3vw,22px);font-weight:900;color:#fff;line-height:1.35;}
+
+/* ───── STEP BLOCK ───── */
+.step-block{
+  background:white;border-radius:var(--radius);
+  padding:28px 30px;margin-bottom:16px;
+  box-shadow:0 3px 16px rgba(0,0,0,.06);
+}
+@media(max-width:600px){.step-block{padding:20px 18px;}}
+
+.step-row{display:flex;gap:18px;margin-bottom:24px;}
+.step-row:last-child{margin-bottom:0;}
+.sn{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--g);color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:900;font-size:17px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  margin-top:3px;
+}
+.sc{flex:1;}
+.sc p{font-size:16px;line-height:1.85;margin-bottom:10px;}
+.sc p:last-of-type{margin-bottom:0;}
+
+.hl-g{color:var(--g);font-weight:800;}
+.hl-r{color:var(--red);font-weight:800;}
+.hl-go{color:var(--gold);font-weight:800;}
+
+/* ───── NOTE BOXES ───── */
+.note{
+  display:flex;gap:10px;align-items:center;
+  border-radius:12px;padding:14px 18px;
+  font-size:14px;line-height:1.85;margin-top:12px;
+}
+.note.green{background:var(--g2);color:#1d4a2d;}
+.note.red{background:var(--red2);color:#822020;}
+.note.gold{background:var(--gold2);color:#7a5010;}
+.note .ni{flex-shrink:0;font-size:20px;line-height:1;display:flex;align-items:center;}
+
+/* ───── DEVICE GRID ───── */
+.device-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+@media(max-width:580px){.device-grid{grid-template-columns:1fr;}}
+.device-card{
+  background:var(--g2);border:2px solid var(--border);
+  border-radius:14px;padding:20px;
+}
+.device-card h4{font-size:15px;font-weight:900;color:var(--g);margin-bottom:12px;}
+.device-card ul{list-style:none;font-size:14px;color:#1d4a2d;line-height:2;}
+.device-card ul li::before{content:"• ";color:var(--gold);font-weight:700;}
+
+/* ───── ACCESSORY LIST ───── */
+.acc-list{margin-top:16px;}
+.acc-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 0;border-top:1px solid var(--border);
+  font-size:15px;line-height:1.7;
+}
+.acc-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--gold);color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:900;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+
+/* ───── TIPBOX ───── */
+.tipbox{
+  background:linear-gradient(135deg,var(--g2),#ecf9f2);
+  border-left:5px solid var(--g);border-radius:0 14px 14px 0;
+  padding:18px 20px;font-size:15px;color:#1d4a2d;line-height:2;margin-top:16px;
+}
+.tipbox .tpt{font-weight:900;font-size:16px;margin-bottom:8px;color:var(--g);}
+
+/* ───── URL BOX ───── */
+.url-box{
+  display:inline-flex;align-items:center;gap:10px;
+  background:white;border:2.5px solid var(--g);
+  border-radius:50px;padding:12px 28px;
+  font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;
+  color:var(--g);text-decoration:none;
+  margin:14px 0;transition:all .2s;
+}
+.url-box:hover{background:var(--g);color:white;}
+
+/* ───── DIVIDER ───── */
+.hdiv{border:none;border-top:1px dashed var(--border);margin:24px 0;}
+
+/* ───── ROOM GRID ───── */
+.room-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+@media(max-width:580px){.room-grid{grid-template-columns:1fr;}}
+.room-card{
+  background:var(--gold2);border:2px solid #e8d5a0;
+  border-radius:14px;padding:18px;
+  font-size:14px;line-height:1.75;color:#5a3e00;
+}
+.room-card h4{font-weight:900;color:#7a5000;margin-bottom:8px;font-size:15px;}
+
+/* ───── NAV ARROWS ───── */
+.nav-arrows{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:28px;padding-bottom:48px;gap:12px;
+}
+.nav-arrows .arrow-btn{
+  display:flex;align-items:center;gap:8px;
+  background:white;border:2px solid var(--border);
+  border-radius:50px;padding:12px 22px;
+  font-size:14px;font-weight:700;color:var(--mid);
+  cursor:pointer;transition:all .2s;flex:1;
+  font-family:'Noto Sans JP',sans-serif;
+  max-width:220px;
+}
+.nav-arrows .arrow-btn:hover{border-color:var(--g);color:var(--g);}
+.nav-arrows .arrow-btn.next{background:var(--g);border-color:var(--g);color:#fff;justify-content:flex-end;box-shadow:0 4px 16px rgba(27,110,64,.25);}
+.nav-arrows .arrow-btn.next:hover{background:#25a05c;}
+.nav-arrows .placeholder{flex:1;max-width:220px;}
+
+/* ───── FOOTER ───── */
+footer{background:var(--g);padding:24px;text-align:center;color:rgba(255,255,255,.7);font-size:13px;line-height:2;}
+footer strong{color:#fff;font-size:15px;display:block;margin-bottom:4px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-pill"><span class="w">WAM</span><span class="c">Connect</span></div>
+  <h1>ご利用の手引き</h1>
+  <p class="header-sub">FC教室スタッフ向けマニュアル｜2026年3月版</p>
+  <div class="header-badge">
+    📋 FC用｜受講準備からログイン・授業参加まで
+  </div>
+</div>
+
+<!-- CONTACT BAR -->
+<div class="mail-bar">
+  <div class="mi">📞</div>
+  <div>
+    <div class="ml">ご不明な点は担当指導センターへ</div>
+    <div class="ma">guidance-net&#64;hmgroup.co.jp</div>
+    <div class="tel">🚨 お急ぎの場合：TELにて担当指導センターまでご連絡ください。</div>
+  </div>
+</div>
+
+<!-- TAB NAV + PAGES -->
+<div class="tab-wrap">
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="showPage(0,this)">📦 受講準備</button>
+    <button class="tab-btn" onclick="showPage(1,this)">1. ログイン</button>
+    <button class="tab-btn" onclick="showPage(2,this)">2. パスワード</button>
+    <button class="tab-btn" onclick="showPage(3,this)">3. 教室ページ</button>
+    <button class="tab-btn" onclick="showPage(4,this)">4. 授業申込</button>
+    <button class="tab-btn" onclick="showPage(5,this)">5. 報告書確認</button>
+    <button class="tab-btn" onclick="showPage(6,this)">6. 授業入室</button>
+    <button class="tab-btn" onclick="showPage(7,this)">7. ヘルプ</button>
+  </div>
+
+  <!-- PAGE 0: 受講に必要なもの -->
+  <div class="page show" data-page="0">
+    <div class="rule-hero"><div class="rn">📦</div><div class="rt">受講に必要なもの</div></div>
+
+    <div class="step-block">
+      <div class="device-grid">
+        <div class="device-card">
+          <h4>💻 パソコンで参加</h4>
+          <ul>
+            <li>Windows</li>
+            <li>iMac / MacBook / Mac mini</li>
+            <li>Chromebook など</li>
+          </ul>
+        </div>
+        <div class="device-card">
+          <h4>📱 タブレットで参加</h4>
+          <ul>
+            <li>iPad 各種</li>
+            <li>Android タブレット など</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="acc-list">
+        <div class="acc-item">
+          <span class="acc-num">①</span>
+          <span><strong>ヘッドセット</strong><br><span style="font-size:13px;color:#666;">ハウリング防止のため推奨しております。</span></span>
+        </div>
+        <div class="acc-item">
+          <span class="acc-num">②</span>
+          <span><strong>ペンタブレット</strong><br><span style="font-size:13px;color:#666;">液晶に直接書き込めないPCの場合に使用します。</span></span>
+        </div>
+        <div class="acc-item">
+          <span class="acc-num">③</span>
+          <span><strong>タッチペン（スタイラスペン）</strong><br><span style="font-size:13px;color:#666;">液晶や板タブレットなどで筆記するためのペン型装置。ネット販売の安価な製品もご利用いただけます。</span></span>
+        </div>
+      </div>
+
+      <div class="tipbox" style="margin-top:20px;">
+        <div class="tpt">🔵 Zoom インストールのお願い</div>
+        パソコン・タブレットともに、安定した接続のため <strong>Zoom アプリのインストール</strong>を行ってください。<br>
+        ※ 方法は別紙インストールマニュアルをご参照ください。
+      </div>
+
+      <div class="note green" style="margin-top:16px;">
+        <span class="ni">💬</span>
+        <span>「この機器は使える？」など、ご不明な点はお気軽に担当者までお問い合わせください。</span>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <div class="placeholder"></div>
+      <button class="arrow-btn next" onclick="nextPage()">1. ログイン →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 1: ログイン -->
+  <div class="page" data-page="1">
+    <div class="rule-hero"><div class="rn">1</div><div class="rt">ログインの方法</div></div>
+
+    <div class="step-block">
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>以下の URL にアクセスし、<span class="hl-g">WAM Connect</span> のログイン画面を開いてください。</p>
+          <a class="url-box" href="https://wam90.com/" target="_blank" rel="noopener">🌐 https://wam90.com/</a>
+          <div class="note gold">
+            <span class="ni">⚠️</span>
+            <span>「教室用」「生徒用」でID・PASSは別になります。ご注意ください。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p><strong>ユーザーID</strong> と <strong>パスワード</strong> を入力してログインしてください。</p>
+          <div class="note green">
+            <span class="ni">🔑</span>
+            <span>パスワードのみ、任意で変更することができます（ユーザーIDは変更不可）。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">③</div>
+        <div class="sc">
+          <p><span class="hl-r">パスワードを忘れた場合</span>、ご契約時にお伝えした初期パスワードにリセット可能です。<br>担当指導センターまでご連絡ください。</p>
+          <div class="tipbox">
+            <div class="tpt">📧 担当指導センター連絡先</div>
+            guidance-net&#64;hmgroup.co.jp<br>
+            🚨 お急ぎの場合：TELにて担当指導センターまでご連絡ください。
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">④</div>
+        <div class="sc">
+          <p>変更した覚えがないのにログインにエラーがある場合も、こちらでリセット対応が可能です。</p>
+          <div class="note gold">
+            <span class="ni">ℹ️</span>
+            <span>リセット解決をご提案することがございます。ご了承ください。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 受講準備</button>
+      <button class="arrow-btn next" onclick="nextPage()">2. パスワード →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2: パスワード変更 -->
+  <div class="page" data-page="2">
+    <div class="rule-hero"><div class="rn">2</div><div class="rt">パスワードの<br>変更方法（任意）</div></div>
+
+    <div class="step-block">
+      <div class="note red" style="margin-bottom:20px;">
+        <span class="ni">🚫</span>
+        <span>生徒IDを変更することはできません。</span>
+      </div>
+
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>ログイン時に <strong>「パスワードを変更しますか？」</strong> のお知らせが表示されます。</p>
+          <div class="note gold">
+            <span class="ni">📅</span>
+            <span>約 <span class="hl-go">6ヶ月に1度</span>、変更確認のメッセージが流れます。<br>「いいえ」をクリックすると現在のパスワードを引き続き利用できます（都度確認が流れます）。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p><strong>「はい」</strong> をクリックすると、新しいパスワードの入力画面が表示されます。</p>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">③</div>
+        <div class="sc">
+          <p>新しいパスワードを入力し <strong>「OK」</strong> をクリックして完了。</p>
+          <div class="note green">
+            <span class="ni">✅</span>
+            <span><strong>4文字以上</strong>、英数字や記号の混在可能。覚えやすいものから強力なものまでお選びいただけます。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 1. ログイン</button>
+      <button class="arrow-btn next" onclick="nextPage()">3. 教室ページ →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3: 教室ページ -->
+  <div class="page" data-page="3">
+    <div class="rule-hero"><div class="rn">3</div><div class="rt">教室ページの内容</div></div>
+
+    <div class="step-block">
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>ログイン後、<span class="hl-g">左のメニュー</span> から各種機能にアクセスできます。主な機能は以下のとおりです。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">お知らせ</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">アラート</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">要望一覧</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">授業一覧</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">授業申込</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">その他管理</span>
+            <span style="background:var(--g2);color:var(--g);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700;">ヘルプ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 2. パスワード</button>
+      <button class="arrow-btn next" onclick="nextPage()">4. 授業申込 →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 4: 授業申込 -->
+  <div class="page" data-page="4">
+    <div class="rule-hero"><div class="rn">4</div><div class="rt">授業申込方法<br><span style="font-size:.7em;opacity:.8;">体験授業・単発授業</span></div></div>
+
+    <div class="step-block">
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>ログイン後、左のメニューから <span class="hl-g">「授業申込」</span> を選択。</p>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p><strong>「生徒名」</strong> を選択し <strong>「表示更新」</strong> をクリック。</p>
+          <div class="note gold">
+            <span class="ni">ℹ️</span>
+            <span>体験時は <span class="hl-go">体験ID</span> を選択してください。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">③</div>
+        <div class="sc">
+          <p><strong>科目選択</strong> を行う。</p>
+          <div class="note green">
+            <span class="ni">📝</span>
+            <span>体験の場合は「<span class="hl-g">移or体</span>」を選択。「≫」をクリックし「登録可能な科目」を選んでください。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">④</div>
+        <div class="sc">
+          <p>カレンダーの <strong>空き枠</strong> に授業を登録する。</p>
+          <div class="note red">
+            <span class="ni">🚫</span>
+            <span><span class="hl-r">グレー部分は「満席」</span>状態です。空き枠で「右クリック」し「単発授業追加」を選択してください。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 3. 教室ページ</button>
+      <button class="arrow-btn next" onclick="nextPage()">5. 報告書確認 →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 5: 授業報告書 -->
+  <div class="page" data-page="5">
+    <div class="rule-hero"><div class="rn">5</div><div class="rt">授業報告書の<br>確認方法</div></div>
+
+    <div class="step-block">
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>左メニューから <span class="hl-g">「授業一覧」</span> を選択。</p>
+          <div class="note green">
+            <span class="ni">📅</span>
+            <span>過去の内容を確認したい場合は「授業日」のカレンダーで日付を選択してください。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p>授業報告を確認したい <strong>「生徒名」</strong> を選択。</p>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">③</div>
+        <div class="sc">
+          <p><span class="hl-g">「授業報告」</span> をクリックすると内容が確認できます。</p>
+          <div class="note gold">
+            <span class="ni">📖</span>
+            <span>報告書下部の「<span class="hl-go">前へ</span>」をクリックすると、過去の報告書も確認できます。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 4. 授業申込</button>
+      <button class="arrow-btn next" onclick="nextPage()">6. 授業入室 →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 6: 授業入室 -->
+  <div class="page" data-page="6">
+    <div class="rule-hero"><div class="rn">6</div><div class="rt">授業に参加する<br>（入室方法）</div></div>
+
+    <div class="step-block">
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>ログイン後、<strong>本日の予定</strong> 画面を確認する。<br>開始 <span class="hl-g">10分前</span> になると「入室」ボタンが <span class="hl-g">青色</span> に変わります。</p>
+          <div class="note gold">
+            <span class="ni">⏰</span>
+            <span>開始 10分前まではボタンが<span class="hl-go">灰色</span>で表示されます。授業後は「終了」に変わります。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p>青い <strong>「入室」</strong> ボタンをクリック。</p>
+          <div class="note green">
+            <span class="ni">💡</span>
+            <span>10分前を過ぎても色が変わらない場合は <strong>「表示更新」</strong> をお試しください。</span>
+          </div>
+          <div class="note red" style="margin-top:10px;">
+            <span class="ni">🚨</span>
+            <span>エラーなどで申込済みの授業が表示されない場合は、<span class="hl-r">授業1時間前まで</span>にご連絡ください。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">③</div>
+        <div class="sc">
+          <p>WAM の契約先 <strong>Zoom アプリ</strong> が起動することを確認。<br>「<span class="hl-g">Zoom Meetings を開く</span>」をクリックしてください。</p>
+          <div class="note green">
+            <span class="ni">📷</span>
+            <span>映像・音声を確認し、背景を「<strong>ぼかす</strong>」設定も利用できます。</span>
+          </div>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">④</div>
+        <div class="sc">
+          <p>Zoom 画面上で講師と対面します。<br>講師が個別授業ルームへ案内しますので、<span class="hl-g">「参加」</span> ボタンで承諾してください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1対2 -->
+    <div class="step-block">
+      <p style="font-weight:900;color:var(--g);margin-bottom:16px;font-size:15px;">📌 1対2コースでご参加の生徒様へ</p>
+      <div class="room-grid">
+        <div class="room-card">
+          <h4>🚪 授業ルーム 1・2</h4>
+          先に「入室」ボタンを押した生徒さんから「ルーム１」「ルーム２」へ順番に入室承認・ご案内します。少々お待ちください。
+        </div>
+        <div class="room-card">
+          <h4>👩‍🏫 講師の動き</h4>
+          講師は両ルームを移動しながら、「解説タイム：画面登場」「課題実践タイム：OFF」の個別指導を行います。
+        </div>
+      </div>
+    </div>
+
+    <!-- アプリなし -->
+    <div class="step-block" style="border:2px solid #2d9bf0;">
+      <p style="font-weight:900;color:#1a6bb5;margin-bottom:14px;">※ Zoom アプリをインストールしていない機器で参加する場合</p>
+      <p style="font-size:15px;line-height:1.85;">コネクトでは安定した授業のため Zoom アプリのインストールを推奨しています。緊急で別のデバイスを使用するなど、アプリが入っていない場合は：</p>
+      <div class="note green" style="margin-top:12px;background:#e8f4ff;color:#1a4a7a;">
+        <span class="ni">🌐</span>
+        <span>Zoom 画面下部「<strong>ブラウザから参加</strong>」をクリックして授業にお入りください。</span>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 5. 報告書確認</button>
+      <button class="arrow-btn next" onclick="nextPage()">7. ヘルプ →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 7: ヘルプ -->
+  <div class="page" data-page="7">
+    <div class="rule-hero"><div class="rn">7</div><div class="rt">先生にヘルプを求める<br><span style="font-size:.7em;opacity:.8;">※ 1対2コースの授業のみ</span></div></div>
+
+    <div class="step-block">
+      <p style="font-size:15px;line-height:1.85;margin-bottom:20px;">1対2の授業「<span class="hl-go">課題実践タイム</span>」中に疑問点が出た場合、担当講師（ルーム管理者「ホスト」）を呼び戻すことができます。</p>
+
+      <div class="note gold" style="margin-bottom:20px;">
+        <span class="ni">📋</span>
+        <div>
+          <strong>こんなときに使えます</strong><br>
+          ■ 指定時間よりも早く終わった<br>
+          ■ 手をつけてみたが進まない<br>
+          ■ 課題の内容が分からなくなってきた　など
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="sn">①</div>
+        <div class="sc">
+          <p>Zoom 画面下部の <span class="hl-g">「ヘルプを求める」</span> を押します。</p>
+        </div>
+      </div>
+      <hr class="hdiv">
+      <div class="step-row">
+        <div class="sn">②</div>
+        <div class="sc">
+          <p><span class="hl-g">「ホストを招待」</span> をクリックし、講師が来るまでお待ちください。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="prevPage()">← 6. 授業入室</button>
+      <div class="placeholder"></div>
+    </div>
+  </div>
+
+</div><!-- /tab-wrap -->
+
+<footer>
+  <strong>WAM Connect（ワムコネクト）FC用 ご利用の手引き</strong>
+  Date: 2026.3 ｜ お急ぎの場合：TELにて担当指導センターまでご連絡ください。 ｜ guidance-net&#64;hmgroup.co.jp
+</footer>
+
+</div>
+<footer>
+  <strong>WAM Connect（ワムコネクト）FC用 ご利用の手引き</strong>
+  Date: 2026.3 | お急ぎの場合：TELにて担当指導センターまでご連絡ください。 | guidance-net&#64;hmgroup.co.jp
+</footer>
+<script src="data:text/javascript;base64,dmFyIHBhZ2VzPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5wYWdlJyk7dmFyIGJ0bnM9ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnRhYi1idG4nKTt2YXIgY3VycmVudD0wO2Z1bmN0aW9uIHNob3dQYWdlKGlkeCxidG4pe3BhZ2VzW2N1cnJlbnRdLmNsYXNzTGlzdC5yZW1vdmUoJ3Nob3cnKTtidG5zW2N1cnJlbnRdLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpO2N1cnJlbnQ9aWR4O3BhZ2VzW2N1cnJlbnRdLmNsYXNzTGlzdC5hZGQoJ3Nob3cnKTtidG5zW2N1cnJlbnRdLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpO3dpbmRvdy5zY3JvbGxUbyh7dG9wOjAsYmVoYXZpb3I6J3Ntb290aCd9KTt9ZnVuY3Rpb24gbmV4dFBhZ2UoKXtpZihjdXJyZW50PHBhZ2VzLmxlbmd0aC0xKXNob3dQYWdlKGN1cnJlbnQrMSxudWxsKTt9ZnVuY3Rpb24gcHJldlBhZ2UoKXtpZihjdXJyZW50PjApc2hvd1BhZ2UoY3VycmVudC0xLG51bGwpO30="></script>
+</body>
+</html>
